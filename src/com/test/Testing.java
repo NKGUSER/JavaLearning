@@ -47,7 +47,7 @@ public class Testing {
 		Thread t3 = new Thread (()->{System.out.println("Lambda Thread");});
 		
 		t3.start();
-		
+		 
 		Lambda J8 = new Lambda();
 		J8.l();
 		
