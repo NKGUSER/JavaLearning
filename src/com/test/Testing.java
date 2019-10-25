@@ -14,23 +14,23 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CopyOnWriteArraySet;
+import java.util.stream.Stream;
 
 public class Testing {
 
 	public static void main(String[] args) throws InterruptedException {
 		
+		Ethread t1 = null;
+		Thread t;
 		
-		Thread t = new Thread(new Mthread());
-		
-		Thread t1 = new Thread(new Ethread());
-		
+		t1 = new Ethread();
+		t = new Thread(new Mthread(t1));
 		
 		t1.join(); // First Thread t1 is finished
 		t.join();  // Second Thread t is finished
 		
-		t.start();  
-		t1.start();
-		
+		t1.start();  
+		t.start();	
 		
 		Thread t2 = new Thread( new Runnable() {
 			
@@ -106,13 +106,13 @@ public class Testing {
 		store.put(new Emp(2,'H'), "Check it");
 		store.putIfAbsent(new Emp(1,'H'), "Hello");
 		
-	    System.out.println("Iterate Map entry using Advance for loop");
+	    System.out.println("Iterate Keyset using Advance for loop");
 		
-        for(Entry e : store.entrySet()) {
+        for(Emp e : store.keySet()) {
         	
-        	Emp k= (Emp) e.getKey();
-            String v = (String) e.getValue();
-        	System.out.println(k.a+" "+v);
+        	int k= e.a;
+            char v = e.name;
+        	System.out.println(k+" "+v);
         }
         
         System.out.println("Iterate Map entry using Foreach entryset");
@@ -129,29 +129,35 @@ public class Testing {
 			System.out.println(K.getName()+ " "+ m.getValue());
 		}
 		
-		
-	
-		LinkedList<Emp> list =  new LinkedList<Emp>();
-		
 		List<String> x = Collections.synchronizedList(new ArrayList());
 		List<String> y = new CopyOnWriteArrayList();
 		Set<String> s =  new CopyOnWriteArraySet<>();
 		Map<String, String> myMap = new ConcurrentHashMap<String, String>();
+	
 		
 		
+		
+		
+		
+		
+		LinkedList<Emp> list =  new LinkedList<Emp>();
+	
 		list.add(new Emp(4,'K'));
 		list.add(new Emp(2,'V'));
 		Collections.sort(list);            // comparable called
 		System.out.println(list);
+		
 		list.add(new Emp(3,'L'));
 		list.add(new Emp(1,'W'));
 		list.add(new Emp(1,'W'));
 		Collections.sort(list, new abc()); // Comparator called
+		
 		System.out.println(list);
 		Collections.reverse(list);
 		System.out.println(list);
 		
 		Set<Emp> removedup = new LinkedHashSet<Emp>(list);
+		
 		list.clear();
 		list.addAll(removedup);
 		System.out.println(list);		
@@ -172,5 +178,6 @@ public class Testing {
 			}
 	            
 	    System.out.println(list);
+	    
 	}
 }
