@@ -15,7 +15,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CopyOnWriteArraySet;
 
-public class Testing {
+public class MainTest {
 
 	public static void main(String[] args) throws Exception {
 		
@@ -164,7 +164,7 @@ public class Testing {
 		list.add(new Emp(3,'L'));
 		list.add(new Emp(1,'W'));
 		list.add(new Emp(1,'W'));
-		Collections.sort(list, new abc()); // Comparator called
+		Collections.sort(list, new ComparatorSort()); // Comparator called
 		
 		System.out.println(list);
 		Collections.reverse(list);

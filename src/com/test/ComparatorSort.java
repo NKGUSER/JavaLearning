@@ -3,7 +3,7 @@ package com.test;
 import java.util.Comparator;
 
 
-class abc implements Comparator<Emp>{
+class ComparatorSort implements Comparator<Emp>{
 
 	@Override
 	public int compare(Emp o1, Emp o2) {
