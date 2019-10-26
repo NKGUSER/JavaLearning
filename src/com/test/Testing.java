@@ -14,11 +14,25 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CopyOnWriteArraySet;
-import java.util.stream.Stream;
 
 public class Testing {
 
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) throws Exception {
+		
+		// Java 9 can mention resource reference vairable in try block 
+		// in place of creating the resource.
+		
+		try(Trywithresource t = new Trywithresource()) {
+			t.doIt();
+			throw new RuntimeException();
+		}
+		catch (Exception e) {
+			System.out.println("Exception caught after executing close() method");
+		}
+		finally {
+			System.out.println("Final block executed after close() and catch block");
+		}
+		
 		
 		Ethread t1 = null;
 		Thread t;
