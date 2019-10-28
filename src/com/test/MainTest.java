@@ -19,7 +19,13 @@ public class MainTest {
 
 	public static void main(String[] args) throws Exception {
 		
-		// Java 9 can mention resource reference vairable in try block 
+		
+		Java8Function<Object> f = new Java8Function<>();
+		f.add(5);
+		f.add("Hello");
+		f.display();
+			
+		// Java 9 can mention resource reference variable in try block 
 		// in place of creating the resource.
 		
 		try(Trywithresource t = new Trywithresource()) {
@@ -97,6 +103,9 @@ public class MainTest {
 		}
 		
 	    String str = input.next();
+	    
+	    // String Builder and Buffer are mutable classes to modify string.
+	    // Where String buffer is Synchronized and builder is not.
 	    
 	    StringBuilder sb = new StringBuilder(str);
 	    sb.reverse();
