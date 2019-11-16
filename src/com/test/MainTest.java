@@ -1,6 +1,7 @@
 package com.test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -8,6 +9,7 @@ import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Map.Entry;
 import java.util.Scanner;
 import java.util.Set;
@@ -17,13 +19,41 @@ import java.util.concurrent.CopyOnWriteArraySet;
 
 public class MainTest {
 
+	
+	static void sort(Integer arr[]) {
+		
+		for(int i=0;i<arr.length-1;i++) {
+			
+			    if(arr[i] > arr[i+1]) {
+			    	int temp = arr[i];
+			        arr[i] = arr[i+1];
+			        arr[i+1] = temp;
+			        i=0;
+			    }
+			}
+		for(int j=0;j<arr.length;j++) 
+		  System.out.println(arr[j]+",");
+    }
 	public static void main(String[] args) throws Exception {
 		
+		Test test = new Test();
 		
+	    List<Integer> numbers = new ArrayList<>(Arrays.asList(1,5,4,3,2));
+	    
+	    Integer arr[] = numbers.toArray(new Integer[numbers.size()]);
+	    
+	    sort(arr); 
+	  
 		Java8Function<Object> f = new Java8Function<>();
 		f.add(5);
 		f.add("Hello");
 		f.display();
+		
+		List a = new ArrayList();
+		a.add(1);
+		a.add("Nitin");
+		System.out.println(a);
+		
 			
 		// Java 9 can mention resource reference variable in try block 
 		// in place of creating the resource.
@@ -40,11 +70,8 @@ public class MainTest {
 		}
 		
 		
-		Ethread t1 = null;
-		Thread t;
-		
-		t1 = new Ethread();
-		t = new Thread(new Mthread(t1));
+		Ethread t1 = new Ethread();
+		Thread t = new Thread(new Mthread(t1));
 		
 		t1.join(); // First Thread t1 is finished
 		t.join();  // Second Thread t is finished
@@ -67,7 +94,17 @@ public class MainTest {
 		Thread t3 = new Thread (()->{System.out.println("Lambda Thread");});
 		
 		t3.start();
-		 
+		
+		
+		final Queue sharedQ = new LinkedList();
+
+        Thread producer = new Producer(sharedQ);
+        Thread consumer = new Consumer(sharedQ);
+
+        producer.start();
+        consumer.start();
+		
+		
 		Lambda J8 = new Lambda();
 		J8.l();
 		
@@ -157,12 +194,6 @@ public class MainTest {
 		Set<String> s =  new CopyOnWriteArraySet<>();
 		Map<String, String> myMap = new ConcurrentHashMap<String, String>();
 	
-		
-		
-		
-		
-		
-		
 		LinkedList<Emp> list =  new LinkedList<Emp>();
 	
 		list.add(new Emp(4,'K'));
